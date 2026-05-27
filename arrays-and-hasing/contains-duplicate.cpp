@@ -2,20 +2,22 @@
 #include<vector>
 using std::vector;
 #include<algorithm>
+#include<unordered_set>
+using std::unordered_set;
 
-//for pre sorting just use: sort(nums.begin(), nums.end())
 class Solution {
 public:
+
     bool containsDuplicate(vector<int>& nums)
     {
-       sort(nums.begin(), nums.end());
+        unordered_set<int> v;
 
-       for(int i=1;i<nums.size();i++)
-       {
-            if(nums[i]==nums[i-1])
+        for(int num : nums)
+        {
+            if(v.count(num))
                 return true;
-       }
-
-       return false;
+            v.insert(num);
+        }
+        return false;
     }
 };
